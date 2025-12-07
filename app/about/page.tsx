@@ -8,6 +8,16 @@ import Navigation from "@/components/navigation"
 
 export default function AboutPage() {
   const [activeTimelineItem, setActiveTimelineItem] = useState(0)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
